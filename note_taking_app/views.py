@@ -74,7 +74,7 @@ class NoteAPIView(APIView):
 
         updated_content = request.data.get('content', '')
 
-        History.objects.create(note=note, content=updated_content, modified_at=timezone.now())
+        History.objects.create(user=request.user, note=note, content=updated_content, modified_at=timezone.now())
 
         note.content += '\n' + "good" + updated_content
         note.save()
